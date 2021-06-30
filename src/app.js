@@ -40,6 +40,7 @@ process.on('SIGINT', () => {
 
 // Load models
 const Mentions = require('./models/mentions');
+const Product = require('./models/product');
 
 // Load routes
 const indexRoutes = require('./routes/index-routes');
@@ -47,5 +48,8 @@ app.use('/', indexRoutes);
 
 const mentionsRoutes = require('./routes/mentions-routes');
 app.use('/mentions', mentionsRoutes);   
+
+const productRoutes = require('./routes/product-routes');
+app.use('/product', productRoutes);
 
 module.exports = app;
