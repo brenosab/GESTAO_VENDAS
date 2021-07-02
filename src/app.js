@@ -41,6 +41,8 @@ process.on('SIGINT', () => {
 // Load models
 const Mentions = require('./models/mentions');
 const Product = require('./models/product');
+const Sale = require('./models/sale');
+const User = require('./models/user');
 
 // Load routes
 const indexRoutes = require('./routes/index-routes');
@@ -51,5 +53,11 @@ app.use('/mentions', mentionsRoutes);
 
 const productRoutes = require('./routes/product-routes');
 app.use('/product', productRoutes);
+
+const saleRoutes = require('./routes/sale-routes');
+app.use('/sale', saleRoutes);
+
+const userRoutes = require('./routes/user-routes');
+app.use('/user', userRoutes);
 
 module.exports = app;

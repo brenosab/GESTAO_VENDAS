@@ -22,7 +22,7 @@ exports.createProduct = async (req, res) => {
 
     await product.save();
 
-    res.status(201).send({message: 'Produto cadastrada com sucesso!'});
+    res.status(201).send({message: 'Produto cadastrado com sucesso!'});
   } catch (e) {
     res.status(500).send({message: 'Falha ao cadastrar o produto.'});
   }
@@ -43,7 +43,7 @@ exports.getProducts = async (req, res) => {
     }
     
   } catch (e) {
-    res.status(500).send({message: 'Falha ao carregar as produtos.'});
+    res.status(500).send({message: 'Falha ao carregar os produtos.'});
   }
 };
 
