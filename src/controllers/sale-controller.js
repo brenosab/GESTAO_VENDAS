@@ -15,8 +15,8 @@ exports.listSales = async (req, res) => {
 exports.createSale = async (req, res) => {
   try {
     const sale = new Sale({
-      codigoVendedor: req.body.codigoVendedor,
-      produtos: req.body.produtos
+      user: req.body.user,
+      products: req.body.products
     });
 
     await sale.save();
