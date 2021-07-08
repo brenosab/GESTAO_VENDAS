@@ -10,10 +10,12 @@ const schema = new Schema({
     ref: 'User',
     required: true
   },
-  products: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product'
-  }]
+  products: [
+    {
+      codigo: { type: mongoose.Schema.Types.ObjectId, ref: 'Product'},
+      quantidade: { type: Number }
+    }
+  ]
 });
 
 module.exports = mongoose.model('Sale', schema);

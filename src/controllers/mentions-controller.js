@@ -1,10 +1,9 @@
-const mongoose = require('mongoose');
-const Mentions = mongoose.model('Mentions');
+const repository = require('../repositories/mentions-repository');
 
 // list
 exports.listMentions = async (req, res) => {
   try {
-    const data = await Mentions.find({});
+    const data = await repository.listMentions();
     res.status(200).send(data);
   } catch (e) {
     res.status(500).send({message: 'Falha ao carregar as menções.'});
@@ -14,12 +13,10 @@ exports.listMentions = async (req, res) => {
 // create
 exports.createMention = async (req, res) => {
   try {
-    const mention = new Mentions({
+    await repository.createMention({
       friend: req.body.friend,
-      mention: req.body.mention 
+      mention: req.body.mention
     });
-
-    await mention.save();
 
     res.status(201).send({message: 'Menção cadastrada com sucesso!'});
   } catch (e) {
@@ -31,7 +28,7 @@ exports.createMention = async (req, res) => {
 exports.getMentions = async (req, res) => {
   try {
     const friend = req.params.friend;
-    const data = await Mentions.findOne({ friend: friend });
+    const data = await repository.getMentions(friend);
     res.status(200).send(data);
   } catch (e) {
     res.status(500).send({message: 'Falha ao carregar as menções.'});
@@ -43,11 +40,9 @@ exports.updateMention = async (req, res) => {
   try {
 
     const filter = { friend: req.body.friend };
-
     //const exist = this.getMentions(new { params: { friend: req.body.friend }},null);
 
-    const doc = await Mentions.findOneAndUpdate(filter, req.body, { new: true, upsert: true });
-
+    const doc = await repository.updateMention(filter,req.body);
     res.status(201).send(doc);
   } catch (e) {
     res.status(500).send({message: 'Falha ao cadastrar a menção.'});
