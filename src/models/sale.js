@@ -10,6 +10,11 @@ const schema = new Schema({
     ref: 'User',
     required: true
   },
+  date: { 
+    type: Date, 
+    //default: Date.now, 
+    required: true 
+  },
   products: [
     {
       codigo: { type: mongoose.Schema.Types.ObjectId, ref: 'Product'},

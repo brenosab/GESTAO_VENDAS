@@ -1,10 +1,18 @@
 const mongoose = require('mongoose');
 const Sale = mongoose.model('Sale');
+const productController = require('../controllers/product-controller');
 
 // list
 exports.listSales = async (req, res) => {
   try {
     const data = await Sale.find({});
+
+    data.forEach(data =>{
+
+      var product = productController.getProducts()
+
+    })
+
     res.status(200).send(data);
   } catch (e) {
     res.status(500).send({message: 'Falha ao carregar as vendas.'});
@@ -16,7 +24,8 @@ exports.createSale = async (req, res) => {
   try {
     const sale = new Sale({
       user: req.body.user,
-      products: req.body.products
+      products: req.body.products,
+      date: req.body.date
     });
 
     await sale.save();
@@ -52,5 +61,18 @@ exports.updateSale = async (req, res) => {
     res.status(201).send(doc);
   } catch (e) {
     res.status(500).send({message: 'Falha ao cadastrar a venda.'});
+  }
+};
+
+// delete
+exports.deleteSale = async (req, res) => {
+  try {
+
+    await Sale.findByIdAndDelete(req.params.id);
+    res.status(200).send({
+      message: 'Venda removida com sucesso!'
+    });
+  } catch (e) {
+    res.status(500).send({message: 'Falha ao remover a venda.'});
   }
 };

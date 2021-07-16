@@ -41,6 +41,21 @@ exports.getUsers = async (req, res) => {
   }
 };
 
+//login
+exports.getUserLogin = async (req, res) => {
+  try {
+    
+    const email = req.params.email;
+    const senha = req.params.senha;
+    const data = await User.exists({ email: email, senha: senha });
+    res.status(200).send(data);
+
+  } catch (e) {
+    res.status(500).send({message: 'Falha ao carregar usuário.'});
+  }
+};
+
+
 // update
 exports.updateUser = async (req, res) => {
   try {
@@ -54,5 +69,18 @@ exports.updateUser = async (req, res) => {
     res.status(201).send(doc);
   } catch (e) {
     res.status(500).send({message: 'Falha ao cadastrar o usuário.'});
+  }
+};
+
+// delete
+exports.deleteUser = async (req, res) => {
+  try {
+
+    await User.findByIdAndDelete(req.params.id);
+    res.status(200).send({
+      message: 'Usuário removido com sucesso!'
+    });
+  } catch (e) {
+    res.status(500).send({message: 'Falha ao remover o usuário.'});
   }
 };

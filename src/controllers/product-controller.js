@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Product = mongoose.model('Product');
 
+const repository = require('../repositories/product-repository');
+
 // list
 exports.listProducts = async (req, res) => {
   try {
@@ -17,7 +19,8 @@ exports.createProduct = async (req, res) => {
     const product = new Product({
       nome: req.body.nome,
       categoria: req.body.categoria,
-      valor: req.body.valor 
+      valor: req.body.valor,
+      estoque: req.body.estoque
     });
 
     await product.save();
@@ -31,17 +34,10 @@ exports.createProduct = async (req, res) => {
 // get
 exports.getProducts = async (req, res) => {
   try {
-    var filtro = req.params.filter;
+    var data = await repository.getMentions(req.params.filter);
+    console.log(data);
+    res.status(200).send(data); 
 
-    if(isNumber(filtro)){
-      const data = await Product.findOne({ id: filtro });
-      res.status(200).send(data);
-    }
-    else{
-      const data = await Product.findOne({ nome: filtro });
-      res.status(200).send(data);
-    }
-    
   } catch (e) {
     res.status(500).send({message: 'Falha ao carregar os produtos.'});
   }
@@ -66,3 +62,16 @@ exports.updateProduct = async (req, res) => {
 function isNumber(value) {
   return !isNaN(parseInt(value, 0)) && isFinite(value);
 }
+
+// delete
+exports.deleteProduct = async (req, res) => {
+  try {
+
+    await Product.findByIdAndDelete(req.params.id);
+    res.status(200).send({
+      message: 'Produto removido com sucesso!'
+    });
+  } catch (e) {
+    res.status(500).send({message: 'Falha ao remover o produto.'});
+  }
+};
