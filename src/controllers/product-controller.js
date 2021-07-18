@@ -34,12 +34,12 @@ exports.createProduct = async (req, res) => {
 // get
 exports.getProducts = async (req, res) => {
   try {
-    var data = await repository.getMentions(req.params.filter);
-    console.log(data);
+
+    var data = await repository.getProduct(req.params.id);
     res.status(200).send(data); 
 
   } catch (e) {
-    res.status(500).send({message: 'Falha ao carregar os produtos.'});
+    res.status(500).send({message: 'Falha ao carregar o produto.'});
   }
 };
 

@@ -1,17 +1,10 @@
 const mongoose = require('mongoose');
 const Sale = mongoose.model('Sale');
-const productController = require('../controllers/product-controller');
 
 // list
 exports.listSales = async (req, res) => {
   try {
-    const data = await Sale.find({});
-
-    data.forEach(data =>{
-
-      var product = productController.getProducts()
-
-    })
+    const data = await Sale.find().populate(['products']);
 
     res.status(200).send(data);
   } catch (e) {

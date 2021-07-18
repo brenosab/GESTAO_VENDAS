@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-  id: {
-    type: Number
-  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -12,14 +9,18 @@ const schema = new Schema({
   },
   date: { 
     type: Date, 
-    //default: Date.now, 
+    default: Date.now, 
     required: true 
   },
   products: [
-    {
-      codigo: { type: mongoose.Schema.Types.ObjectId, ref: 'Product'},
-      quantidade: { type: Number }
-    }
+    new Schema({
+      quantidade: Number,
+      product: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Product',
+        required: true
+      }
+    })
   ]
 });
 

@@ -3,11 +3,6 @@ const Product = mongoose.model('Product');
 
 
 // get
-exports.getMentions = async data => {
-  if(isNumber(data)){
-    return await Product.findOne({ id: data });
-  }
-  else{
-    return await Product.findOne({ nome: data });
-  }
+exports.getProduct = async data => {
+  return await Product.findOne({ _id: data });
 };
