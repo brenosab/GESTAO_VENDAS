@@ -45,8 +45,9 @@ exports.getUsers = async (req, res) => {
 exports.getUserLogin = async (req, res) => {
   try {
     
-    const email = req.params.email;
-    const senha = req.params.senha;
+    const email = req.headers.email + '@vendasnow.com';
+    const senha = req.headers.senha;
+
     const data = await User.exists({ email: email, senha: senha });
     res.status(200).send(data);
 

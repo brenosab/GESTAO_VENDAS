@@ -62,4 +62,7 @@ app.use('/sale', saleRoutes);
 const userRoutes = require('./routes/user-routes');
 app.use('/user', userRoutes);
 
+const loginRoutes = require('./routes/login-routes');
+app.use('/login', loginRoutes);
+
 module.exports = app;
