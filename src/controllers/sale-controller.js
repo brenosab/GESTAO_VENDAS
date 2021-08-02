@@ -1,11 +1,27 @@
 const mongoose = require('mongoose');
 const Sale = mongoose.model('Sale');
+const repository = require('../repositories/product-repository');
 
 // list
 exports.listSales = async (req, res) => {
   try {
-    const data = await Sale.find().populate(['products']);
+    const sales = await Sale.find().populate('products.$*.product');
+    var data = [];
 
+    await Promise.all( sales.map( async sale =>{
+      var produtos = [];
+      await Promise.all(sale.products.map( async product =>{
+        var prod = await repository.getProduct(product.product);
+        produtos.push(prod);
+      }));
+      var saleViewModel = { 
+        _id: sale._id, 
+        user: sale.user, 
+        date: sale.date, 
+        products: produtos 
+      };
+      data.push(saleViewModel);
+    }));
     res.status(200).send(data);
   } catch (e) {
     res.status(500).send({message: 'Falha ao carregar as vendas.'});

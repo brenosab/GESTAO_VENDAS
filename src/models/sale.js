@@ -9,9 +9,19 @@ const schema = new Schema({
   },
   date: { 
     type: Date, 
-    default: Date.now, 
+    default: Date.now,
     required: true 
   },
+  // products: {
+  //   type: Map,
+  //   of: new Schema({
+  //     quantidade: Number,
+  //     product: {
+  //       type: 'ObjectId',
+  //       ref: 'Product'
+  //     }
+  //   })
+  // },
   products: [
     new Schema({
       quantidade: Number,
