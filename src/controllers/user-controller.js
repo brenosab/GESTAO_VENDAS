@@ -65,16 +65,10 @@ exports.getUserLogin = async (req, res) => {
 // update
 exports.updateUser = async (req, res) => {
   try {
-
-    const filter = { id: req.params.id };
-
-    //const exist = this.getUsers(new { params: { friend: req.body.friend }},null);
-
-    const doc = await User.findOneAndUpdate(filter, req.body, { new: true, upsert: true });
-
+    const doc = await User.findByIdAndUpdate(req.params.id, req.body);
     res.status(201).send(doc);
   } catch (e) {
-    res.status(500).send({message: 'Falha ao cadastrar o usuário.'});
+    res.status(500).send({message: 'Falha ao atualizar o usuário.'});
   }
 };
 

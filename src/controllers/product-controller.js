@@ -59,10 +59,6 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
-function isNumber(value) {
-  return !isNaN(parseInt(value, 0)) && isFinite(value);
-}
-
 // delete
 exports.deleteProduct = async (req, res) => {
   try {

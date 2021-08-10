@@ -12,7 +12,7 @@ exports.listSales = async (req, res) => {
       var produtos = [];
       await Promise.all(sale.products.map( async product =>{
         var prod = await repository.getProduct(product.product);
-        produtos.push(prod);
+        produtos.push({ quantidade: product.quantidade, product: prod });
       }));
       var saleViewModel = { 
         _id: sale._id, 
