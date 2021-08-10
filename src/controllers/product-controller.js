@@ -46,13 +46,7 @@ exports.getProducts = async (req, res) => {
 // update
 exports.updateProduct = async (req, res) => {
   try {
-
-    const filter = { id: req.params.id };
-
-    //const exist = this.getProducts(new { params: { friend: req.body.friend }},null);
-
-    const doc = await Product.findOneAndUpdate(filter, req.body, { new: true, upsert: true });
-
+    const doc = await Product.findByIdAndUpdate(req.params.id, req.body);
     res.status(201).send(doc);
   } catch (e) {
     res.status(500).send({message: 'Falha ao cadastrar o produto.'});
