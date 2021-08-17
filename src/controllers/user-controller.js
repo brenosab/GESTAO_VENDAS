@@ -45,7 +45,7 @@ exports.getUsers = async (req, res) => {
 exports.getUserLogin = async (req, res) => {
   try {
     
-    const email = req.headers.email + '@vendasnow.com';
+    const email = req.headers.email;// + '@vendasnow.com';
     const senha = req.headers.senha;
 
     const data = await User.exists({ email: email, senha: senha });

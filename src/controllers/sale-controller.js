@@ -5,9 +5,8 @@ const repository = require('../repositories/product-repository');
 // list
 exports.listSales = async (req, res) => {
   try {
-    const sales = await Sale.find().populate('products.$*.product');
+    const sales = await Sale.find().populate(['user']);
     var data = [];
-
     await Promise.all( sales.map( async sale =>{
       var produtos = [];
       await Promise.all(sale.products.map( async product =>{
