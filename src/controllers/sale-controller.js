@@ -5,8 +5,22 @@ const repository = require('../repositories/product-repository');
 // list
 exports.listSales = async (req, res) => {
   try {
-    const sales = await Sale.find().populate(['user']);
+    
+    const totalCount = (await Sale.find()).length;
+    var pageSize = req.params.linhasPorPagina;
+    const pageIndex = req.params.pagina;
+    var skip = (pageIndex - 1) * pageSize;
+
+    const pageCount = Number.parseInt((totalCount / pageSize) + ((totalCount % pageSize) != 0 ? 1 : 0));
+
+    const sales = await Sale.find()
+      .sort({ date: 1 })
+      .skip(Number.parseInt(skip))
+      .limit(Number.parseInt(pageSize))
+      .populate(['user']);
+    
     var data = [];
+
     await Promise.all( sales.map( async sale =>{
       var produtos = [];
       await Promise.all(sale.products.map( async product =>{
@@ -21,7 +35,18 @@ exports.listSales = async (req, res) => {
       };
       data.push(saleViewModel);
     }));
-    res.status(200).send(data);
+
+    res.status(200).send({ sales: data,
+      metadata: {
+        count: sales.length, 
+        totalCount: totalCount,
+        pageIndex: pageIndex,
+        pageCount: pageCount,
+        hasNextPage: ((pageIndex == pageCount) || (pageIndex > pageCount)) ? false : true,
+        hasPreviousPage: ((pageIndex == 1) || (pageIndex > pageCount)) ? false : true
+      }
+    }
+      );
   } catch (e) {
     res.status(500).send({message: 'Falha ao carregar as vendas.'});
   }
