@@ -6,6 +6,17 @@ exports.getProduct = async data => {
   return await Product.findOne({ "_id": data });
 };
 
+// get with filters
+exports.getProducts = async (produto, categoria) => {
+  if(produto){
+    return await Product.find({ nome: produto });
+  }
+  if(categoria){
+    return await Product.find({ categoria: categoria });
+  }
+  return await Product.find();
+};
+
 // getAll
 exports.getAll = async (linhasPorPagina, pagina) => {
 

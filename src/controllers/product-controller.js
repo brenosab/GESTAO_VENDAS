@@ -3,13 +3,24 @@ const Product = mongoose.model('Product');
 
 const repository = require('../repositories/product-repository');
 
+// get with filters
+exports.getProducts = async (req, res) => {
+  try {
+    let produto = req.query.produto;
+    let categoria = req.query.categoria;
+
+    var data = await repository.getProducts(produto, categoria);
+    res.status(200).send({ products: data }); 
+
+  } catch (e) {
+    res.status(500).send({message: 'Falha ao carregar o produto.'});
+  }
+};
+
 // list
 exports.listProducts = async (req, res) => {
   try {
     var data = await repository.getAll(req.params.linhasPorPagina, req.params.pagina);
-
-    // var array = await Product.find();
-    // const count = array.length;
     res.status(200).send(data);
   } catch (e) {
     res.status(500).send({message: 'Falha ao carregar os produtos.'});
@@ -35,7 +46,7 @@ exports.createProduct = async (req, res) => {
 };
 
 // get
-exports.getProducts = async (req, res) => {
+exports.getProduct = async (req, res) => {
   try {
 
     var data = await repository.getProduct(req.params.id);
