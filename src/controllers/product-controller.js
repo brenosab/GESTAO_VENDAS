@@ -6,8 +6,11 @@ const repository = require('../repositories/product-repository');
 // list
 exports.listProducts = async (req, res) => {
   try {
-    const data = await Product.find({});
-    res.status(200).send(data);
+    var data = await repository.getAll(req.params.linhasPorPagina, req.params.pagina);
+
+    // var array = await Product.find();
+    // const count = array.length;
+    res.status(200).send({data});
   } catch (e) {
     res.status(500).send({message: 'Falha ao carregar os produtos.'});
   }

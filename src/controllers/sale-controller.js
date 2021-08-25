@@ -7,10 +7,9 @@ exports.listSales = async (req, res) => {
   try {
     
     const totalCount = (await Sale.find()).length;
-    var pageSize = req.params.linhasPorPagina;
+    const pageSize = req.params.linhasPorPagina;
     const pageIndex = req.params.pagina;
-    var skip = (pageIndex - 1) * pageSize;
-
+    const skip = (pageIndex - 1) * pageSize;
     const pageCount = Number.parseInt((totalCount / pageSize) + ((totalCount % pageSize) != 0 ? 1 : 0));
 
     const sales = await Sale.find()
