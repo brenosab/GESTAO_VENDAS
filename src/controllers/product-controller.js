@@ -10,7 +10,7 @@ exports.listProducts = async (req, res) => {
 
     // var array = await Product.find();
     // const count = array.length;
-    res.status(200).send({data});
+    res.status(200).send(data);
   } catch (e) {
     res.status(500).send({message: 'Falha ao carregar os produtos.'});
   }
