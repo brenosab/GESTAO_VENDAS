@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Product = mongoose.model('Product');
+const Mentions = mongoose.model('Mentions');
+var fs = require('fs');
 
 const repository = require('../repositories/product-repository');
 
@@ -44,6 +46,27 @@ exports.createProduct = async (req, res) => {
     res.status(500).send({message: 'Falha ao cadastrar o produto.'});
   }
 };
+
+// post image
+exports.createImage = async (req, res) => {
+  try {
+
+    res.status(200).send(fs.readFileSync(req.body.image.path));
+    var newItem = new Mentions();
+    newItem.img.data = fs.readFileSync(req.body.image)
+    newItem.img.contentType = 'image/png';
+    //newItem.save();
+    res.status(200).send(newItem);
+
+    // await product.save();
+
+    // res.status(201).send({message: 'Produto cadastrado com sucesso!'});
+  } catch (e) {
+    res.status(500).send({error:{message:e.message, code: e.code}});
+    
+  }
+};
+
 
 // get
 exports.getProduct = async (req, res) => {

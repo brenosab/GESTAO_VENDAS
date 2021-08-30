@@ -10,6 +10,10 @@ const schema = new Schema({
   mention: {
     type: String,
     required: true
+  },
+  img: { 
+    data: Buffer, 
+    contentType: String 
   }
 });
 
