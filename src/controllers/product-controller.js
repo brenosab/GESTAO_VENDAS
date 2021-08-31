@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const Product = mongoose.model('Product');
 const Mentions = mongoose.model('Mentions');
-var fs = require('fs');
-
+const fs = require('fs');
 const repository = require('../repositories/product-repository');
 
 // get with filters
@@ -29,6 +28,16 @@ exports.listProducts = async (req, res) => {
   }
 };
 
+// list images
+exports.listProductImages = async (req, res) => {
+  try {
+    var data = await repository.getAllProductImages();
+    res.status(200).send(data);
+  } catch (e) {
+    res.status(500).send({message: 'Falha ao carregar as imagens.'});
+  }
+};
+
 // create
 exports.createProduct = async (req, res) => {
   try {
@@ -36,7 +45,8 @@ exports.createProduct = async (req, res) => {
       nome: req.body.nome,
       categoria: req.body.categoria,
       valor: req.body.valor,
-      estoque: req.body.estoque
+      estoque: req.body.estoque,
+      productImage: req.file.path
     });
 
     await product.save();
@@ -46,27 +56,6 @@ exports.createProduct = async (req, res) => {
     res.status(500).send({message: 'Falha ao cadastrar o produto.'});
   }
 };
-
-// post image
-exports.createImage = async (req, res) => {
-  try {
-
-    res.status(200).send(fs.readFileSync(req.body.image.path));
-    var newItem = new Mentions();
-    newItem.img.data = fs.readFileSync(req.body.image)
-    newItem.img.contentType = 'image/png';
-    //newItem.save();
-    res.status(200).send(newItem);
-
-    // await product.save();
-
-    // res.status(201).send({message: 'Produto cadastrado com sucesso!'});
-  } catch (e) {
-    res.status(500).send({error:{message:e.message, code: e.code}});
-    
-  }
-};
-
 
 // get
 exports.getProduct = async (req, res) => {

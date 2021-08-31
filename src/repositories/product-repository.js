@@ -17,6 +17,11 @@ exports.getProducts = async (produto, categoria) => {
   return await Product.find();
 };
 
+// getAll ProductImages
+exports.getAllProductImages = async () => {
+  return await Product.find().select('productImage').where('productImage').ne(null);
+}
+
 // getAll
 exports.getAll = async (linhasPorPagina, pagina) => {
 
