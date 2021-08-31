@@ -72,7 +72,12 @@ exports.createSale = async (req, res) => {
 exports.getSales = async (req, res) => {
   try {
 
-    const data = await Sale.findOne({ id: req.params.id });
+    if(res.params.produto){
+      return await Product.find({ nome: produto });
+    }
+    if(res.params.user){
+      return await Product.find({ vendedor: user });
+    }
     res.status(200).send(data);    
     
   } catch (e) {
