@@ -48,9 +48,7 @@ exports.createProduct = async (req, res) => {
       estoque: req.body.estoque,
       productImage: req.file.path
     });
-
     await product.save();
-
     res.status(201).send({message: 'Produto cadastrado com sucesso!'});
   } catch (e) {
     res.status(500).send({message: 'Falha ao cadastrar o produto.'});
@@ -72,10 +70,19 @@ exports.getProduct = async (req, res) => {
 // update
 exports.updateProduct = async (req, res) => {
   try {
-    const doc = await Product.findByIdAndUpdate(req.params.id, req.body);
+    // const filter = { id: req.params.id };
+    //const doc = await Product.findOneAndUpdate(filter, req.body, { new: true, upsert: true });
+    const doc = await Product.findByIdAndUpdate(req.params.id,
+      {
+        nome: req.body.nome,
+        categoria: req.body.categoria,
+        valor: req.body.valor,
+        estoque: req.body.estoque
+      }
+    );
     res.status(201).send(doc);
   } catch (e) {
-    res.status(500).send({message: 'Falha ao cadastrar o produto.'});
+    res.status(500).send({message: 'Falha ao atualizar o produto.'});
   }
 };
 
