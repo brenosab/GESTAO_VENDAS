@@ -72,7 +72,7 @@ exports.createSale = async (req, res) => {
 exports.getSales = async (req, res) => {
   try {
 
-    const data = await Sale.findOne({ id: req.params.id });
+    const data = await Sale.findOne({ "_id": req.params.id });
     res.status(200).send(data);    
     
   } catch (e) {
@@ -85,11 +85,7 @@ exports.updateSale = async (req, res) => {
   try {
 
     const filter = { id: req.params.id };
-
-    //const exist = this.getSales(new { params: { friend: req.body.friend }},null);
-
     const doc = await Sale.findOneAndUpdate(filter, req.body, { new: true, upsert: true });
-
     res.status(201).send(doc);
   } catch (e) {
     res.status(500).send({message: 'Falha ao cadastrar a venda.'});
