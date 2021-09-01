@@ -71,6 +71,37 @@ exports.createSale = async (req, res) => {
 // get
 exports.getSales = async (req, res) => {
   try {
+    
+    const objectId = mongoose.Types.ObjectId(req.query.user);
+    const sales = await Sale.find({ user: objectId })      
+    .sort({ date: 1 })
+    .populate(['user']);
+
+    var data = [];
+
+    await Promise.all( sales.map( async sale =>{
+      var produtos = [];
+      await Promise.all(sale.products.map( async product =>{
+        var prod = await repository.getProduct(product.product);
+        produtos.push({ quantidade: product.quantidade, product: prod });
+      }));
+      var saleViewModel = { 
+        _id: sale._id, 
+        user: sale.user, 
+        date: sale.date, 
+        products: produtos 
+      };
+      data.push(saleViewModel);
+    }));
+    
+    res.status(200).send({ sales: data });    
+  } catch (e) {
+    res.status(500).send({message: 'Falha ao carregar as vendas.'});
+  }
+};
+
+exports.getSale = async (req, res) => {
+  try {
 
     if(res.params.produto){
       return await Product.find({ nome: produto });
