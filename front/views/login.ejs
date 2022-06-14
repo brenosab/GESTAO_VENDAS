@@ -1,0 +1,92 @@
+<%- contentFor('secao1') %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <%- contentFor('secao2') %>
+    <div class="page">
+        <div class="row header">
+            <div class="col-5">
+                <a onclick="location.href='/'" id="title">VENDAS NOW</a>
+            </div>
+            <div class="col-5">
+                <a href="" id="title-desc">Sobre a Loja</a>
+            </div>
+        </div>
+        <div class="container-inicial-principal">
+            <div class="row main">
+                <div class="col-5">
+                    <div class="caixas-login">
+                        <div id="gallery">
+                            <div class="title-container">
+                                <h2>Seja Bem-Vindo</h2>
+                            </div>
+                            <form name="login" onsubmit="return false">
+                                <div class="form-group">
+                                    <div class="item-group">
+                                        <label for="email">Usuário</label>
+                                        <input type="email" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter user">
+                                    </div>
+                                    <div class="item-group">
+                                        <label for="senha">Senha</label>
+                                        <input type="password" class="form-control" name="senha">
+                                    </div>
+                                </div>
+                                <button 
+                                    class="btn btn-dark"
+                                    onclick="postLogin(login.email,login.senha)"
+                                >
+                                    Entrar
+                                </button>
+                                <label id="loginHelp" class="form-text text-muted">
+                                    Não possui cadastro? <u><b>
+                                        <a onclick="location.href='/addUser'" id="cliqueAdd">Clique aqui</a>
+                                    </b></u>
+                                </label>
+                            </form>
+                        </div>                
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="caixas">
+                        <div> 
+                            <img src="../imagens/vendas/image 8.png" class="img-fluid" alt="Responsive image">
+                            <br />
+                        </div>                
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('components/modal.ejs', 
+            {
+                title:'Usuário e/ou senha inválidos', 
+                body: 'Tente novamente ou procure o gerente para realizar o seu cadastro no sistema.'
+            }); 
+        %> 
+        <!-- Modal -->
+        <!-- <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">          
+                <div class="modal-content"> 
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Usuário e/ou senha inválidos</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label id="loginHelp" class="form-text text-muted">
+                            Tente novamente ou procure o gerente para realizar o seu cadastro no sistema.
+                            Não possui cadastro? <u><b>Clique aqui</b></u>
+                        </label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>            
+            </div>
+        </div> -->
+    </div>   
+<%- contentFor('secao3') %>    
+<script type="text/javascript" src='scripts/user/login.js'></script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+

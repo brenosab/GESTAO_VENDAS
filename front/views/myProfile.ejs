@@ -1,0 +1,127 @@
+<%- contentFor('secao1') %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<%- contentFor('secao2') %>
+    <div class="page">
+        <div class="row header">
+            <nav class="gn-menu-wrapper">
+                <div class="gn-scroller">
+                    <ul class="gn-menu">
+                        <div id="usuario-status">
+                            <h4 class="link-titulo">Usuário: Admin</h4>
+                        </div>
+                        <h3 class="link-titulo" onclick="location.href='/'">
+                            <a href="/" rel="lightbox" title="Imagem 6">
+                                <img src="../../imagens/icones/image 9.png" width="30" height="30" alt="" title="Home"/></a>
+                            Home
+                        </h3><br/>                
+                        <% if(user==='admin'){ %>
+                            <h3 class="link-titulo" onclick="location.href='/menuUser'">
+                                <a rel="lightbox" title="Imagem 6">
+                                    <img src="../../imagens/icones/image 10.png" width="30" height="30" alt="" title="Usuario"/></a>
+                                Usuário
+                            </h3>
+                            <ul class="box">
+                                <li><a href="/menuUser">Lista de Usuários</a></li>
+                            </ul>              
+                            <% }%>                
+                        <h3 class="link-titulo" onclick="location.href='/listSale'">
+                            <a href="/listSale" rel="lightbox" title="Imagem 6">
+                                <img src="../../imagens/icones/image 11.png" width="30" height="30" alt="" title="Usuario"/></a>
+                            Vendas
+                        </h3>
+                        <ul class="box">					
+                            <li><a href="/listSale">Lista de Vendas</a></li> 			
+                            <li><a href="/addSale">Cadastro de Vendas</a></li> 			
+                        </ul>                    
+                        <h3 class="link-titulo" onclick="location.href='/listProduct'">
+                            <a href="/listProduct" rel="lightbox" title="Imagem 6">
+                                <img src="../../imagens/icones/image 12.png" width="30" height="30" alt="" title="Usuario"/></a>
+                            Estoque
+                        </h3>
+                        <ul class="box">
+                            <li><a href="/listProduct">Lista de Estoque</a></li>
+                            <% if(user!=='vendedor'){ %>
+                            <li><a href="/addProduct">Cadastro de Produtos</a></li>
+                            <% } %>
+                        </ul>   
+                        <h3 class="link-titulo" onclick="location.href='/myProfile'">
+                            <a href="/myProfile" rel="lightbox" title="Imagem 6">
+                                <img src="../../imagens/icones/image 13.png" width="30" height="30" alt="" title="Usuario"/></a>
+                            Meu Perfil
+                        </h3>             
+                    </ul>
+                </div>
+            </nav>
+            <div class="col-5">
+                <a onclick="location.href='/'" id="title">VENDAS NOW</a>
+            </div>
+            <div class="col-5">
+                <a href="" id="title-desc">Sobre a Loja</a>
+            </div>
+            <div class="col-1">
+                <button class="button-header" onclick="logout()" >Sair</button>
+            </div>
+        </div>
+        <div class="container-box">
+            <div id="conteudo">
+                <div class="container-header">
+                    <div class="row">
+                        <div class="col-6">
+                            <label id="produtoTitle">
+                                Meu Perfil
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-descricao">
+                    <label>Informações Gerais</label>       
+                </div>
+                <div id="gallery" class="container-filtro">
+                    <div class="title-container">
+                        <label id="label-nome">
+                            Seu nome:&nbsp;&nbsp;&nbsp;
+                            <label id="nome"></label>
+                        </label> <br/>
+                        <label id="label-perfil">
+                            Perfil:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label id="perfil"></label>
+                        </label> <br/>
+                        <label id="label-email">
+                            Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label id="email"></label>
+                        </label> <br/>
+                        <label id="label-codigo">
+                            Código:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label id="codigo"></label>
+                        </label> 
+                    </div>    
+                    <form id='user-form' onsubmit="return false">
+                        <div class="form-group">
+                            <div class="row item-group">
+                                <div class="col-5">
+                                    <label for="senha">Senha</label>
+                                    <input type="password" class="form-control" id="senha" name="senha">
+                                </div>    
+                            </div>
+                            <div class="row item-group">
+                                <div class="col-5">
+                                    <label for="senha2">Repita sua senha</label>
+                                    <input type="password" class="form-control" id="senha2" name="senha2">
+                                </div>                        
+                            </div>     
+                        </div>
+                        <br/>
+                        <label >
+                            Deseja mudar de senha? Preencha os campos <b>Senha</b> e <b>Confirmação de senha</b>
+                            logo abaixo. Não esqueça de clicar em <b>Salvar dados</b>
+                        </label><br/>
+                        <button type="submit" class="btn btn-dark" id="btn-salvar">Salvar dados</button>
+                    </form>
+                </div>
+                <%- include('components/modal.ejs', {title:'Usuário', body: 'Usuário atualizado com sucesso'}); %> 
+            </div>
+        </div>
+    </div>
+    <%- contentFor('secao3') %>    
+    <script type="text/javascript" src='scripts/user/myProfile.js'></script>

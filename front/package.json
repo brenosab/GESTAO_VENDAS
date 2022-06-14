@@ -1,0 +1,33 @@
+{
+  "name": "WebDevUFC2021.1",
+  "version": "1.0.0",
+  "description": "Projeto de desenvolvimento de site para compra de vestuário. Segue, abaixo, a contribuição de cada membro do grupo.",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node node_modules/nodemon/bin/nodemon.js app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eduardoserpa/WebDevUFC2021.1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eduardoserpa/WebDevUFC2021.1/issues"
+  },
+  "homepage": "https://github.com/Eduardoserpa/WebDevUFC2021.1#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.1",
+    "fetch": "^1.1.0",
+    "multer": "^1.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}

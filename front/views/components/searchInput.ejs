@@ -1,0 +1,21 @@
+<div class="searchInput">
+    <label for="produto">
+        <%= typeof title != 'undefined' ? title : 'default' %>
+    </label>
+    <div class="input-group mb-3">
+        <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Digite o código ou o nome do produto"
+            id="produto" 
+            name="produto"
+        >   
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button" id="button-addon2" onclick="getProduct()">
+                <img src="../../imagens/icones/search-solid.svg" width="13" height="13" alt=""/>
+          </button>
+        </div>
+    </div>          
+</div>
+
+<script type="text/javascript" src='scripts/product/searchInput.js'></script>

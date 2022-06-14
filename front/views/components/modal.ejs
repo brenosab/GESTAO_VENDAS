@@ -1,0 +1,22 @@
+<div class="modal" id="modal-comp" role="dialog">
+    <div class="modal-dialog">          
+        <div class="modal-content"> 
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <%= typeof title != 'undefined' ? title : 'default' %>
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <label id="modal-alert" class="form-text text-muted">
+                    <%= typeof body != 'undefined' ? body : 
+                    'Tente novamente ou procure o gerente para realizar o seu cadastro no sistema. Não possui cadastro? Clique aqui' 
+                    %>
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>            
+    </div>
+</div>
