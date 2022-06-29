@@ -1,5 +1,5 @@
 const express = require('express');
-var mysql = require('mysql');
+const mongoose = require('mongoose');
 require('dotenv').config();
 var cors = require('cors');
 
@@ -20,19 +20,20 @@ app.use((req, res, next) => {
 });
 
 // Database
-const db = mysql.createConnection({
-    host     : process.env.RDS_HOSTNAME,
-    user     : process.env.RDS_USERNAME,
-    password : process.env.RDS_PASSWORD,
-    port     : process.env.RDS_PORT
-  });
+mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
+    useUnifiedTopology: true,
+    useFindAndModify: true,
+    useNewUrlParser: true,
+    useCreateIndex: true 
+})
+const db = mongoose.connection;
   
 db.on('connected', () => {
-    console.log('mysql default connection is open');
+    console.log('Mongoose default connection is open');
 });
 
 db.on('error', err => {
-    console.log(`mysql default connection has occured \n${err}`);
+    console.log(`Mongoose default connection has occured \n${err}`);
 });
 
 db.on('disconnected', () => {
