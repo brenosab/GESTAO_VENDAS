@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+require('dotenv').config();
 
 // info
 exports.info = async (req, res) => {
@@ -8,7 +9,7 @@ exports.info = async (req, res) => {
     console.log('The value for DATABASE_CONNECTION_STRING is:', conn_string);
     res.status(200).send(conn_string);
   } catch (e) {
-    res.status(500).send({message: 'Falha ao carregar os usuários.'});
+    res.status(500).send({message: 'Falha ao carregar o .env ' + process.env.DATABASE_CONNECTION_STRING});
   }
 };
 
