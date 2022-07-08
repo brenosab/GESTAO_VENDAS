@@ -2,6 +2,17 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
 // list
+exports.info = async (req, res) => {
+  try {
+    var conn_string = process.env.DATABASE_CONNECTION_STRING;
+    console.log('The value for DATABASE_CONNECTION_STRING is:', conn_string);
+    res.status(200).send(conn_string);
+  } catch (e) {
+    res.status(500).send({message: 'Falha ao carregar os usuários.'});
+  }
+};
+
+// list
 exports.listUsers = async (req, res) => {
   try {
     const data = await User.find({});
