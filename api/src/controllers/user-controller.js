@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
-// list
+// info
 exports.info = async (req, res) => {
   try {
     var conn_string = process.env.DATABASE_CONNECTION_STRING;
