@@ -1,6 +1,6 @@
 
 $(document).ready(function () {
-    var uri = 'http://localhost:3000/user/';
+    var uri = 'http://api.com/user/';
     fetch(uri, { method: 'GET', mode: 'cors', redirect: 'follow' })
         .then(response => response.text())
         .then(result => {
@@ -50,7 +50,7 @@ function excluirUser(){
 function deleteUser() {
     var id = sessionStorage.getItem('id-delete-user');
     console.log('session ' + id);
-    var uri = `http://localhost:3000/user/` + id;
+    var uri = `http://api.com/user/` + id;
 
     var req = new XMLHttpRequest();
     req.addEventListener("readystatechange", function() {

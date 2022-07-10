@@ -3,7 +3,7 @@ codigo = "";
 function getProduct() {
     var codigo = $('#produto').val();
     if(codigo){
-        var uri = `http://localhost:3000/product/${codigo}`;
+        var uri = `http://api.com/product/${codigo}`;
         var requestOptions = {
             method: 'GET',
             redirect: 'follow'

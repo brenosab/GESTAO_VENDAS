@@ -1,4 +1,4 @@
-var uri = 'http://localhost:3000/product/';
+var uri = 'http://api.com/product/';
 
 $(document).ready(function(){
   var idUrl = getUrlParameter('id');
@@ -13,7 +13,7 @@ $(document).ready(function(){
       $('#valor').val(resp.valor);
       $('#quantidade').val(resp.estoque);
       if(resp.productImage){
-        document.getElementById("preview").src = (`http://localhost:3000/${resp.productImage}`).replace('\\','/');
+        document.getElementById("preview").src = (`http://api.com/${resp.productImage}`).replace('\\','/');
       }
     })
     .catch(error => console.log('error', error));

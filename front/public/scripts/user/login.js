@@ -10,7 +10,7 @@ function postLogin(email, senha) {
         redirect: 'follow',
         headers: myHeaders,
     };
-    fetch("http://15.228.36.26:3000/login/", requestOptions)
+    fetch("http://api.com/login/", requestOptions)
     .then(response => response.text())
     .then(result => {
         var resp = JSON.parse(result); 

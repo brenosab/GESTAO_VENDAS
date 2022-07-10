@@ -5,7 +5,7 @@ form.addEventListener("submit", function (e) {
 })
 
 function postUser() {
-    var uri = `http://localhost:3000/user/`;
+    var uri = `http://api.com/user/`;
     var nome = $('#nome').val();
     var email = $('#email').val();
     var senha1 = $('#senha1').val();

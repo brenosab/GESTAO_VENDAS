@@ -54,7 +54,7 @@ function addTabela(array){
 }
 
 function postSale() {
-    var uri = `http://localhost:3000/sale/`;
+    var uri = `http://api.com/sale/`;
     if(array.length !== 0){
         var usuario = sessionStorage.getItem('id');
         var data = JSON.stringify({
