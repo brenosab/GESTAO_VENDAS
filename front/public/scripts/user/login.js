@@ -1,15 +1,14 @@
 function postLogin(email, senha) {
     var myHeaders = new Headers();
-    myHeaders.append("Access-Control-Allow-Origin", "*");
-    myHeaders.append("Accept", "*/*");
     myHeaders.append("email", email.value);
     myHeaders.append("senha", senha.value);
     var requestOptions = {
         method: 'GET',
+        mode: 'cors',
+        redirect: 'follow',
         headers: myHeaders,
-        redirect: 'follow'
     };
-    fetch("http://localhost:3000/login/", requestOptions)
+    fetch("https://localhost:3000/login/", requestOptions)
     .then(response => response.text())
     .then(result => {
         var resp = JSON.parse(result); 
