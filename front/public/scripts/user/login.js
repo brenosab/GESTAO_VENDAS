@@ -1,5 +1,7 @@
 function postLogin(email, senha) {
     var myHeaders = new Headers();
+    myHeaders.append("Access-Control-Allow-Origin", "http://localhost:3003");
+    myHeaders.append("Accept", "*/*");
     myHeaders.append("email", email.value);
     myHeaders.append("senha", senha.value);
     var requestOptions = {
