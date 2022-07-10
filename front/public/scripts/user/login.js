@@ -1,26 +1,15 @@
 function postLogin(email, senha) {
-    var myHeaders = new Headers();
-    myHeaders.append("Access-Control-Allow-Origin", "*");
-    myHeaders.append("Accept", "*/*");
-    myHeaders.append("email", email.value);
-    myHeaders.append("senha", senha.value);
+
+    var uri = 'https://localhost:3000/user/login/' + email.value + '&' + senha.value;
+    console.log(email);
+    console.log(uri);
+    
     var requestOptions = {
         method: 'GET',
-        headers: myHeaders,
         redirect: 'follow'
     };
-    fetch("http://localhost:3000/user/login/", requestOptions)
+    fetch(uri, requestOptions)
     .then(response => response.text())
-    .then(result => {
-        var resp = JSON.parse(result); 
-        if(resp.exist === true){
-            document.cookie = `user=${resp.user.tipo}`;
-            sessionStorage.setItem('id',resp.user._id);
-            window.location.replace("/myProfile");
-        }
-        else{
-            $('#modal-comp').modal('show');
-        }
-    })
-    .catch(error => $('#myModal').modal('show'));
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
 } 
