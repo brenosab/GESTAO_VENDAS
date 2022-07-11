@@ -2,7 +2,7 @@
 /*
 $(document).ready(function(){
 
-    var uri = 'http://api.com/product/';
+    var uri = 'http://15.228.36.26/product/';
     //Find the entry to change or remove
     fetch(uri, {method: 'GET', mode: 'cors', redirect: 'follow'})
     .then(response => response.text())
@@ -13,7 +13,7 @@ $(document).ready(function(){
 });*/
 
 function putProduct() {
-    var uri = `http://api.com/product/`;
+    var uri = `http://15.228.36.26/product/`;
 
     var nome = $('#nome').val();
     var categoria = $('#categoria').val();
@@ -46,7 +46,7 @@ function putProduct() {
 }
 
 function deleteProduct() {
-    var uri = `http://api.com/product/`;
+    var uri = `http://15.228.36.26/product/`;
     var id = $('#_id').val();
     uri.append(id);
     window.alert(uri);

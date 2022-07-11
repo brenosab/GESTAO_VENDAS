@@ -1,4 +1,4 @@
-var uri = 'http://api.com/product/';
+var uri = 'http://15.228.36.26/product/';
 
 $(document).ready(function(){
   var idUrl = getUrlParameter('id');
@@ -13,7 +13,7 @@ $(document).ready(function(){
       $('#valor').val(resp.valor);
       $('#quantidade').val(resp.estoque);
       if(resp.productImage){
-        document.getElementById("preview").src = (`http://api.com/${resp.productImage}`).replace('\\','/');
+        document.getElementById("preview").src = (`http://15.228.36.26/${resp.productImage}`).replace('\\','/');
       }
     })
     .catch(error => console.log('error', error));

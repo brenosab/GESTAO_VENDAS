@@ -5,7 +5,7 @@ form.addEventListener("submit", function (e) {
 })
 
 function postUser() {
-    var uri = `http://api.com/user/`;
+    var uri = `http://15.228.36.26/user/`;
     var nome = $('#nome').val();
     var email = $('#email').val();
     var senha1 = $('#senha1').val();

@@ -1,21 +1,21 @@
 let NumeroLinhasPorPagina = 6;
 let IndexPagina = 1;
 
-$(document).ready(() => getSales(`http://api.com/sale/${NumeroLinhasPorPagina}/${IndexPagina}`));
+$(document).ready(() => getSales(`http://15.228.36.26/sale/${NumeroLinhasPorPagina}/${IndexPagina}`));
 $("#PreviousPage").click(function() {
     IndexPagina --;
-    var uri = `http://api.com/sale/${NumeroLinhasPorPagina}/${IndexPagina}`;
+    var uri = `http://15.228.36.26/sale/${NumeroLinhasPorPagina}/${IndexPagina}`;
     getSales(uri);
 });
 $("#NextPage").click(function() {
     IndexPagina ++;
-    var uri = `http://api.com/sale/${NumeroLinhasPorPagina}/${IndexPagina}`;
+    var uri = `http://15.228.36.26/sale/${NumeroLinhasPorPagina}/${IndexPagina}`;
     getSales(uri);
 });
 
 $("#consultar-btn").click(function() {
     var vendedor = $('#vendedor').val();
-    var uri = `http://api.com/sale/`;
+    var uri = `http://15.228.36.26/sale/`;
     if(vendedor) uri += `?user=${vendedor}`;
     getSales(uri);
 });
@@ -62,7 +62,7 @@ function excluirVenda(){
 
 function deleteVenda() {
     var id = sessionStorage.getItem('id-delete');
-    var uri = `http://api.com/sale/` + id;
+    var uri = `http://15.228.36.26/sale/` + id;
     var req = new XMLHttpRequest();
     req.addEventListener("readystatechange", function() {
         if(this.readyState === 4) {

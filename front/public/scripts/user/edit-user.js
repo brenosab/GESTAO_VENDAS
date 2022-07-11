@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     var idUrl = getUrlParameter('id');
     if(idUrl){
-      var uri = `http://api.com/user/${idUrl}`;  
+      var uri = `http://15.228.36.26/user/${idUrl}`;  
       fetch(uri, {method: 'GET', mode: 'cors', redirect: 'follow'})
       .then(response => response.text())
       .then(result => {
@@ -17,7 +17,7 @@ $(document).ready(function(){
   });
   
   function putUser() {
-    var uri = `http://api.com/user/`;
+    var uri = `http://15.228.36.26/user/`;
     var nome = $('#nome').val();
     var tipo = $('#perfil').val();
     var email = $('#email').val();

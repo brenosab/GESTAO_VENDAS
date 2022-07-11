@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
   var session = sessionStorage.getItem('id');
-  var uri = 'http://api.com/user/' + session;
+  var uri = 'http://15.228.36.26/user/' + session;
 
   fetch(uri, {method: 'GET', mode: 'cors', redirect: 'follow'})
   .then(response => response.text())
@@ -36,7 +36,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 $( "#btn-salvar" ).click(function() {
   var id = sessionStorage.getItem('id');
-  var uri = `http://api.com/user/${id}`;  
+  var uri = `http://15.228.36.26/user/${id}`;  
   
   var senha = $('#senha').val();
   var senha_confirmacao = $('#senha2').val();

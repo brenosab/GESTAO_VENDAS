@@ -1,15 +1,15 @@
 let NumeroLinhasPorPagina = 6;
 let IndexPagina = 1;
 
-$(document).ready(() => getProducts(`http://api.com/product/${NumeroLinhasPorPagina}/${IndexPagina}`));
+$(document).ready(() => getProducts(`http://15.228.36.26/product/${NumeroLinhasPorPagina}/${IndexPagina}`));
 $("#PreviousPage").click(function() {
     IndexPagina --;
-    var uri = `http://api.com/product/${NumeroLinhasPorPagina}/${IndexPagina}`;
+    var uri = `http://15.228.36.26/product/${NumeroLinhasPorPagina}/${IndexPagina}`;
     getProducts(uri);
 });
 $("#NextPage").click(function() {
     IndexPagina ++;
-    var uri = `http://api.com/product/${NumeroLinhasPorPagina}/${IndexPagina}`;
+    var uri = `http://15.228.36.26/product/${NumeroLinhasPorPagina}/${IndexPagina}`;
     getProducts(uri);
 });
 
@@ -17,7 +17,7 @@ $("#consultar-btn").click(function() {
     var produto = $('#produto').val();
     var categoria = $('#categoria').val();
 
-    var uri = `http://api.com/product/`;
+    var uri = `http://15.228.36.26/product/`;
 
     if(produto) uri += `?produto=${produto.split(" ")[2]}`;
     if(categoria) uri += `?categoria=${categoria}`;
@@ -71,7 +71,7 @@ function excluirProduto(){
 
 function deleteProduct() {
     var id = sessionStorage.getItem('id-delete');
-    var uri = `http://api.com/product/` + id;
+    var uri = `http://15.228.36.26/product/` + id;
 
     var req = new XMLHttpRequest();
     req.addEventListener("readystatechange", function() {

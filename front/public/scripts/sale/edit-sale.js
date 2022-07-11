@@ -1,5 +1,5 @@
 function putSale() {
-    var uri = `http://api.com/sale/`;
+    var uri = `http://15.228.36.26/sale/`;
 
     var user = $('#user').val();
     var date = $('#date').val();
@@ -30,7 +30,7 @@ function putSale() {
 }
 
 function deleteSale() {
-    var uri = `http://api.com/sale/`;
+    var uri = `http://15.228.36.26/sale/`;
     var id = $('#_id').val();
     uri.append(id);
     var req = new XMLHttpRequest();

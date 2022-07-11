@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 $(document).ready(() =>{
-    fetch('http://api.com/product/imagens', {method: 'GET', mode: 'cors', redirect: 'follow'})
+    fetch('http://15.228.36.26/product/imagens', {method: 'GET', mode: 'cors', redirect: 'follow'})
     .then(response => response.text())
     .then(result => {
         criarGaleria(result);
@@ -30,7 +30,7 @@ function criarGaleria(data){
     var count = 1;
     array.forEach(function(product) {
         var classname = `gallery__item bg-${count}`;
-        var uri =  (`http://api.com/${product.productImage}`).replace('\\','/');
+        var uri =  (`http://15.228.36.26/${product.productImage}`).replace('\\','/');
         d = document.createElement('div');
         $(d).addClass(classname)
         .css('backgroundImage', `url(${uri})`)
