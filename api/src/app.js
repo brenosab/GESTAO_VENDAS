@@ -9,7 +9,7 @@ app.use('/uploads', express.static('uploads'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors({
-    origin: ['http://localhost:3003', 'https://localhost:3003', 'http://15.228.36.26/', 'https://15.228.36.26/', 'http://15.228.36.26', 'https://15.228.36.26'],
+    origin: ['http://18.231.178.161', 'https://18.231.178.161'],
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH','OPTIONS'],
 }));
 app.use((req, res, next) => {
